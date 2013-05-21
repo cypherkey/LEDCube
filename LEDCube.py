@@ -4,6 +4,42 @@ from datetime import datetime,timedelta
 import json
 from Adafruit_MCP230xx import Adafruit_MCP230XX
 
+class LEDCube:
+    def __init__(self):
+        self.level = []
+        self.col = []
+
+    def __setPin(self, ledType, index, val):
+        if index >= len(ledType):
+            raise ValueError("out of ranage")
+        ledType[index][0].output(ledType[index][1], val)
+
+    def addLevel(self, expander, pin):
+        self.level.append([expander,pin])
+        expander.config(pin, Adafruit_MCP230XX.OUTPUT)
+        expander.output(pin, 0)
+
+    def addCol(self, expander, pin):
+        self.col.append([expander,pin])
+        expander.config(pin, Adafruit_MCP230XX.OUTPUT)
+        expander.output(pin, 0)
+
+    def setLed(self, level, col, val):
+        self.__setPin(self.level, level, val)
+        self.__setPin(self.col, col, val)
+
+    def reset(self):
+        for i in range(0,len(self.level)):
+            self.__setPin(self.level, level, 0)
+        for i in range(0,len(self.col)):
+            self.__setPin(self.col, col, 0)
+
+    def levels(self):
+        return len(self.level)
+
+    def cols(self):
+        return len(self.col)
+ 
 class LedCubeLoader:
     @staticmethod
     def generateCube(filename):
@@ -50,6 +86,9 @@ class LedCubeLoader:
         if "repeat" in prog:
             repeat = prog["repeat"]
 
+        if not "prog" in prog:
+            raise Exception("program (prog) not defined in program file")
+
         pov = LedCubePov(cube)
         while(True):
             for line in prog["prog"]:
@@ -63,42 +102,6 @@ class LedCubeLoader:
             if not repeat:
                 break
 
-class LEDCube:
-    def __init__(self):
-        self.level = []
-        self.col = []
-
-    def __setPin(self, ledType, index, val):
-        if index >= len(ledType):
-            raise ValueError("out of ranage")
-        ledType[index][0].output(ledType[index][1], val)
-
-    def addLevel(self, expander, pin):
-        self.level.append([expander,pin])
-        expander.config(pin, Adafruit_MCP230XX.OUTPUT)
-        expander.output(pin, 0)
-
-    def addCol(self, expander, pin):
-        self.col.append([expander,pin])
-        expander.config(pin, Adafruit_MCP230XX.OUTPUT)
-        expander.output(pin, 0)
-
-    def setLed(self, level, col, val):
-        self.__setPin(self.level, level, val)
-        self.__setPin(self.col, col, val)
-
-    def reset(self):
-        for i in range(0,len(self.level)):
-            self.__setPin(self.level, level, 0)
-        for i in range(0,len(self.col)):
-            self.__setPin(self.col, col, 0)
-
-    def levels(self):
-        return len(self.level)
-
-    def cols(self):
-        return len(self.col)
- 
 class LedCubePov:
     def __init__(self, cube):
         self.cube = cube
