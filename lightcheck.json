@@ -1,0 +1,24 @@
+{
+    "cube":"cube.json",
+    "repeat":true,
+    "prog": [
+        {"level":0,"column":0,"duration":500},
+        {"level":0,"column":1,"duration":500},
+        {"level":0,"column":2,"duration":500},
+        {"level":0,"column":3,"duration":500},
+        {"level":0,"column":4,"duration":500},
+        {"level":0,"column":5,"duration":500},
+        {"level":0,"column":6,"duration":500},
+        {"level":0,"column":7,"duration":500},
+        {"level":0,"column":8,"duration":500},
+        {"level":1,"column":0,"duration":500},
+        {"level":1,"column":1,"duration":500},
+        {"level":1,"column":2,"duration":500},
+        {"level":1,"column":3,"duration":500},
+        {"level":1,"column":4,"duration":500},
+        {"level":1,"column":5,"duration":500},
+        {"level":1,"column":6,"duration":500},
+        {"level":1,"column":7,"duration":500},
+        {"level":1,"column":8,"duration":500}
+    ]
+}

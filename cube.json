@@ -1,0 +1,23 @@
+{
+    "expanders": [
+        {"id":"mcp0","bus":0,"address":32,"gpio":8},
+        {"id":"mcp1","bus":0,"address":33,"gpio":8}
+    ],
+    "cube": {
+        "levels" : [
+            {"expander":"mcp0","pin":1},
+            {"expander":"mcp1","pin":5}
+        ],
+        "columns" : [
+            {"expander":"mcp0","pin":6},
+            {"expander":"mcp0","pin":2},
+            {"expander":"mcp0","pin":4},
+            {"expander":"mcp0","pin":0},
+            {"expander":"mcp1","pin":6},
+            {"expander":"mcp1","pin":7},
+            {"expander":"mcp1","pin":3},
+            {"expander":"mcp1","pin":0},
+            {"expander":"mcp1","pin":1}
+        ]
+    }
+}
